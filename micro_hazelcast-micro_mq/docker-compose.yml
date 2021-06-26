@@ -1,0 +1,34 @@
+version: '2.1'
+
+networks:
+  local:
+
+services:
+  hz1:
+    image: "hazelcast/hazelcast"
+    user: root
+    networks:
+      - local
+    ports:
+      - 5701:5701
+  hz2:
+    image: "hazelcast/hazelcast"
+    user: root
+    networks:
+      - local
+    ports:
+      - 5702:5701
+  hz3:
+    image: "hazelcast/hazelcast"
+    user: root
+    networks:
+      - local
+    ports:
+      - 5703:5701
+  rabbitmq:
+    image: rabbitmq:3-management
+    networks:
+      - local
+    ports:
+      - 5672:5672
+      - 15672:15672
