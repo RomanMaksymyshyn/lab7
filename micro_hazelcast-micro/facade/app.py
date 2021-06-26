@@ -1,3 +1,4 @@
+import sys
 import uuid
 import pika
 import requests
@@ -50,6 +51,7 @@ def get_address(service_name):
 
 
 if __name__ == '__main__':
+    address = sys.argv[0]
     port = consul_mapper.find_free_port()
-    consul_mapper.register_self("facade", port, "http://192.168.0.101")
-    app.run(host='192.168.0.101', port=port)
+    consul_mapper.register_self("facade", port, "http://" + address)
+    app.run(host=address, port=port)

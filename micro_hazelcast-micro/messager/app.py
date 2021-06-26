@@ -1,3 +1,4 @@
+import sys
 import threading
 
 import pika
@@ -38,8 +39,9 @@ def consuming(messages_list):
     channel.start_consuming()
 
 if __name__ == '__main__':
+    address = sys.argv[0]
     port = consul_mapper.find_free_port()
-    consul_mapper.register_self("message", port, "http://192.168.0.101")
+    consul_mapper.register_self("message", port, "http://" + address)
     ALL_TIME_MESSAGES_11 = []
     consuming(ALL_TIME_MESSAGES_11)
     print('LETS GO 1')

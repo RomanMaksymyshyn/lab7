@@ -1,3 +1,5 @@
+import sys
+
 import hazelcast
 from flask import Flask, request
 import consul_mapper
@@ -21,8 +23,9 @@ def logger():
 
 
 if __name__ == '__main__':
+    address = sys.argv[0]
     port = consul_mapper.find_free_port()
-    service_id = consul_mapper.register_self("logging", port, "http://192.168.0.101")
+    service_id = consul_mapper.register_self("logging", port, "http://" + address)
     hz_addr = consul_mapper.get_val("hz/" + str(service_id))
     hz_cluster = consul_mapper.get_val("hz/cluster")
     client = hazelcast.HazelcastClient(
