@@ -46,10 +46,10 @@ def post_msg_to_mq(msg: str):
 def get_address(service_name):
     service = consul_mapper.get_service(service_name)
     print(service_name)
-    return "http://192.168.0.101:" + str(service["ServicePort"]) + "/"
+    return service["ServiceAddress"] + str(service["ServicePort"]) + "/"
 
 
 if __name__ == '__main__':
     port = consul_mapper.find_free_port()
-    consul_mapper.register_self("facade", port)
+    consul_mapper.register_self("facade", port, "http://192.168.0.101")
     app.run(host='0.0.0.0', port=port)
