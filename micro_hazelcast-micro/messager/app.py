@@ -39,8 +39,8 @@ def consuming(messages_list):
 
 if __name__ == '__main__':
     port = consul_mapper.find_free_port()
-    consul_mapper.register_self("message", port)
+    consul_mapper.register_self("message", port, "http://192.168.0.101")
     ALL_TIME_MESSAGES_11 = []
     consuming(ALL_TIME_MESSAGES_11)
     print('LETS GO 1')
-    app.run(host='0.0.0.0', port=port, debug=False)
+    app.run(host='192.168.0.101', port=port, debug=False)

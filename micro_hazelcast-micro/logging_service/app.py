@@ -22,11 +22,11 @@ def logger():
 
 if __name__ == '__main__':
     port = consul_mapper.find_free_port()
-    service_id = consul_mapper.register_self("logging", port)
+    service_id = consul_mapper.register_self("logging", port, "http://192.168.0.101")
     hz_addr = consul_mapper.get_val("hz/" + str(service_id))
     hz_cluster = consul_mapper.get_val("hz/cluster")
     client = hazelcast.HazelcastClient(
         cluster_name=hz_cluster,
         cluster_members=[hz_addr]
     )
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='192.168.0.101', port=port)

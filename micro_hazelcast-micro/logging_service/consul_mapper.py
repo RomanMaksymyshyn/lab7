@@ -7,7 +7,7 @@ from contextlib import closing
 import requests
 
 
-def register_self(service_name, port, address="http://127.0.0.1"):
+def register_self(service_name, port, address):
     services = get_services(service_name)
     service_id = service_name + str(len(services))
     payload = {

@@ -52,4 +52,4 @@ def get_address(service_name):
 if __name__ == '__main__':
     port = consul_mapper.find_free_port()
     consul_mapper.register_self("facade", port, "http://192.168.0.101")
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='192.168.0.101', port=port)
